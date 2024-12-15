@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container a {
+            font-size: 14px;
+            text-decoration: none;
+            color: #00a;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+
+        .login-container button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self'; form-action 'self';">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <!-- Prevent CSRF by enforcing a valid action URL -->
+        <form action="#" method="POST" onsubmit="return validateForm(event);">
+            <input id="emailOrPhone" type="text" placeholder="Email or Phone" required>
+            <input id="password" type="password" placeholder="Password" required>
+            <a href="#" onclick="alert('Please contact support to reset your password.');">Forgot password?</a>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+
+    <script>
+        /**
+         * Frontend Form Validation
+         * Validates user input for basic format before submission to reduce unnecessary server processing.
+         * 
+         * @param {Event} event - Form submit event.
+         * @returns {boolean} - Returns false to prevent submission on invalid data.
+         */
+        function validateForm(event) {
+            const emailOrPhone = document.getElementById('emailOrPhone').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Basic input validation
+            if (!emailOrPhone || !password) {
+                alert('Please fill in all fields.');
+                return false;
+            }
+
+            // Optional: Add custom logic for email/phone format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\d{10}$/; // Adjust for your specific phone number format
+
+            if (!emailRegex.test(emailOrPhone) && !phoneRegex.test(emailOrPhone)) {
+                alert('Please enter a valid email or phone number.');
+                return false;
+            }
+
+            return true; // Allow form submission if valid
+        }
+
+        // Prevent clickjacking by disabling this page from being loaded in an iframe
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+    </script>
+</body>
+</html>

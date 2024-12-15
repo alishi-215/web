@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Product Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"], input[type="file"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter New Product</h1>
+        <form id="product-entry-form">
+            <div class="form-group">
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" name="product-name" placeholder="Enter product name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Select Category</label>
+                <select id="category" name="category" required>
+                    <option value="">--Select Category--</option>
+                    <option value="fruit">Fruit</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="dairy">Dairy</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-image">Upload Product Image</label>
+                <input type="file" id="product-image" name="product-image" accept=".jpeg,.jpg,.png" required>
+            </div>
+
+            <div class="form-group">
+                <label for="stock-quantity">Stock Quantity</label>
+                <input type="number" id="stock-quantity" name="stock-quantity" placeholder="Enter stock quantity" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Product Description</label>
+                <textarea id="description" name="description" placeholder="Enter product description" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Submit Product</button>
+        </form>
+
+        <div class="login-link">
+            <p>Not logged in? <a href="loginpage.html">Login</a> to enter products.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('product-entry-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const productName = document.getElementById('product-name').value;
+            const category = document.getElementById('category').value;
+            const productImage = document.getElementById('product-image').files[0];
+            const stockQuantity = document.getElementById('stock-quantity').value;
+            const description = document.getElementById('description').value;
+
+            if (!productImage) {
+                alert('Please upload a product image.');
+                return;
+            }
+
+            const allowedExtensions = ['jpeg', 'jpg', 'png'];
+            const fileExtension = productImage.name.split('.').pop().toLowerCase();
+
+            if (!allowedExtensions.includes(fileExtension)) {
+                alert('Invalid file type. Please upload an image file (jpeg, jpg, png).');
+                return;
+            }
+
+            alert('Product submitted successfully!');
+        });
+    </script>
+</body>
+</html>

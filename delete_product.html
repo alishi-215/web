@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self';">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0fff0;
+        }
+        h1 {
+            color: #ff8c00;
+        }
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Products</h1>
+    <div class="product" id="product-1">
+        <p>Carrots</p>
+        <button class="delete-btn">Delete Product</button>
+    </div>
+    <div class="product" id="product-2">
+        <p>Eggs</p>
+        <button class="delete-btn">Delete Product</button>
+    </div>
+    <div class="product" id="product-3">
+        <p>Milk</p>
+        <button class="delete-btn">Delete Product</button>
+    </div>
+    <div class="product" id="product-4">
+        <p>Apples</p>
+        <button class="delete-btn">Delete Product</button>
+    </div>
+    <button onclick="location.href='remove_farmers.html';">Back to Farmer Profiles</button>
+
+    <script>
+        // Add event listeners to all delete buttons after the page is loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const productDiv = this.parentElement; // Get the parent div of the button (the product)
+                    const productName = productDiv.querySelector('p').textContent; // Get product name
+                    const confirmation = confirm(`Are you sure you want to delete ${productName}?`);
+                    if (confirmation) {
+                        productDiv.remove(); // Remove the product div from the DOM
+                        alert(`${productName} deleted successfully!`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; }
+        header { background-color: rgba(255, 255, 255, 0.8); padding: 10px 20px; text-align: center; }
+        .buy-now-container { display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .buy-now-details { background-color: white; padding: 20px; max-width: 600px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center; }
+        .buy-now-details img { width: 150px; height: 150px; border-radius: 5px; }
+        .buy-now-details .product-name { font-size: 24px; font-weight: bold; margin: 10px 0; }
+        .buy-now-details .product-price { font-size: 20px; margin: 10px 0; }
+        .buy-now-details .quantity-container { margin-top: 20px; }
+        .buy-now-details .quantity-container input { width: 50px; font-size: 16px; text-align: center; padding: 5px; }
+        .buy-now-details .total { font-size: 24px; margin-top: 20px; font-weight: bold; }
+        .buy-now-details button { padding: 10px 20px; background-color: green; color: white; font-size: 18px; border: none; cursor: pointer; margin-top: 20px; }
+        .buy-now-details button:disabled { background-color: gray; }
+    </style>
+</head>
+<body>
+    <header><h1>Buy Now</h1></header>
+    <main>
+        <div class="buy-now-container">
+            <div class="buy-now-details" id="buy-now-details"></div>
+        </div>
+    </main>
+
+    <script>
+        window.onload = function() {
+            const selectedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+            if (!selectedProduct) {
+                alert("No product selected.");
+                return; // Prevent further execution if no product is selected
+            }
+
+            document.getElementById("buy-now-details").innerHTML = `
+                <img src="${selectedProduct.image}" alt="${selectedProduct.name}">
+                <div class="product-name">${selectedProduct.name}</div>
+                <div class="product-price">Price: ${selectedProduct.price}</div>
+                <div class="quantity-container">
+                    <label for="quantity">Quantity: </label>
+                    <input type="number" id="quantity" value="1" min="1" max="10" onchange="updateTotal()">
+                </div>
+                <div class="total" id="total"></div>
+                <button id="buy-now-btn" onclick="placeOrder()">Place Order</button>
+            `;
+            
+            updateTotal();  // Initial total update
+
+            // Function to update the total price based on quantity
+            function updateTotal() {
+                const quantity = parseInt(document.getElementById("quantity").value);
+                const price = parseFloat(selectedProduct.price.replace(/[^0-9.-]+/g, "")); // Properly parse price
+                const total = quantity * price;
+                document.getElementById("total").innerText = `Total: $${total.toFixed(2)}`;
+                document.getElementById("buy-now-btn").disabled = quantity <= 0;
+            }
+
+            // Function to handle placing the order
+            function placeOrder() {
+                const quantity = parseInt(document.getElementById("quantity").value);
+                const price = parseFloat(selectedProduct.price.replace(/[^0-9.-]+/g, ""));
+                const total = (quantity * price).toFixed(2);
+
+                const orderDetails = {
+                    name: selectedProduct.name,
+                    price: selectedProduct.price,
+                    image: selectedProduct.image,
+                    quantity: quantity,
+                    total: `$${total}`
+                };
+
+                // Save order details to localStorage
+                localStorage.setItem("orderDetails", JSON.stringify(orderDetails)); 
+                localStorage.removeItem("selectedProduct"); // Remove product after placing order
+
+                // Redirect to Thank You page
+                window.location.href = "thankyou.html";
+            }
+        }
+    </script>
+</body>
+</html>

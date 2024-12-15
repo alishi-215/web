@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('farm1.JPEG');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .container button {
+            background-color: #22B07D;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .container button:hover {
+            background-color: #1e9b6e;
+        }
+        .container a {
+            color: #22B07D;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'self';">
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <!-- Secure navigation -->
+        <button onclick="secureNavigate('delete_farmer.html')">Remove Farmer</button>
+        <button onclick="secureNavigate('delete_buyer.html')">Remove Buyer</button>
+        <button onclick="secureNavigate('delete_product.html')">Remove Product</button>
+        <br><br>
+        <a href="adminlogin.html" onclick="secureLogout(event)">Logout</a>
+    </div>
+
+    <script>
+        /**
+         * Allowed URLs for navigation. Prevents open redirects by verifying all URLs against this list.
+         */
+        const allowedUrls = ['delete_farmer.html', 'delete_buyer.html', 'delete_product.html', 'adminlogin.html'];
+
+       

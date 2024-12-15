@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products List</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="products.js"></script>
+    <style>
+        body {
+            background-image: url('sky.JFIF');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        #product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .product {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 300px; /* Enforce consistent height */
+            cursor: pointer; /* Make it clickable */
+        }
+
+        .product img {
+            max-width: 100%;
+            max-height: 150px; /* Ensure images do not exceed the box size */
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .product h2 {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        .product p {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Farmers' Market</h1>
+    </header>
+
+    <nav>
+        <a href="#" data-category="all">All</a>
+        <a href="#" data-category="fruits">Fruits</a>
+        <a href="#" data-category="vegetables">Vegetables</a>
+        <a href="#" data-category="dairy">Dairy</a>
+    </nav>
+
+    <main>
+        <div id="product-list">
+            <!-- Products are dynamically filtered using categories -->
+            <div class="product" data-category="fruits" onclick="window.location.href='productdetails.html?id=1'">
+                <img src="apple.JFIF" alt="Apples">
+                <h2>Apples</h2>
+                <p>$2.00</p>
+                <p>Fresh organic apples!</p>
+            </div>
+            <div class="product" data-category="vegetables" onclick="window.location.href='productdetails.html?id=2'">
+                <img src="carrot.JFIF" alt="Carrots">
+                <h2>Carrots</h2>
+                <p>$1.50</p>
+                <p>Fresh carrots for your kitchen!</p>
+            </div>
+            <div class="product" data-category="dairy" onclick="window.location.href='productdetails.html?id=3'">
+                <img src="milk.JFIF" alt="Milk">
+                <h2>Milk</h2>
+                <p>$3.00</p>
+                <p>Organic cow milk.</p>
+            </div>
+            <div class="product" data-category="dairy" onclick="window.location.href='productdetails.html?id=4'">
+                <img src="egg.JFIF" alt="Eggs">
+                <h2>Eggs</h2>
+                <p>$2.50</p>
+                <p>Farm fresh eggs.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check if user is logged in before showing products
+        window.onload = function() {
+            if (!localStorage.getItem('isLoggedIn')) {
+                alert('Please log in to view the products.');
+                window.location.href = 'buyerlogin.html'; // Redirect to login page if not logged in
+            }
+
+            // Filter products based on category selection
+            const categoryLinks = document.querySelectorAll('nav a');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = e.target.getAttribute('data-category');
+                    filterProducts(category);
+                });
+            });
+
+            function filterProducts(category) {
+                const products = document.querySelectorAll('.product');
+                products.forEach(product => {
+                    if (category === 'all' || product.getAttribute('data-category') === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>

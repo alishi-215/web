@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script> <!-- For password hashing -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('farm4.JPEG'); /* Background Image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Transparent background */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #333;
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Buyer Sign Up</h2>
+        <form id="signupForm">
+            <label for="username">Username (Email)</label>
+            <input type="email" id="username" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <button type="submit" class="form-button">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission to validate first
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Hash the password before storing it
+            const hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
+
+            // Save username and hashed password in localStorage (simulating a backend storage)
+            localStorage.setItem("storedUsername", username);
+            localStorage.setItem("storedPassword", hashedPassword);
+
+            // Redirect to login page after successful sign-up
+            alert("Sign-up successful!");
+            window.location.href = 'buyerlogin.html'; // Redirect to login page
+        };
+    </script>
+</body>
+</html>

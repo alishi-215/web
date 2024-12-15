@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <title>Nature's Basket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background: #008000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+        nav a:hover {
+            background: #4CAF50;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .hero {
+            text-align: center;
+            background: url('farming.jpg') no-repeat center center/cover;
+            color: white;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+        }
+        .section {
+            padding: 20px;
+            text-align: center;
+        }
+        .highlights {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .highlight {
+            width: 30%;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .contact-section {
+            background: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .contact-section h3 {
+            margin-bottom: 10px;
+        }
+        .contact-section p {
+            margin: 5px 0;
+        }
+        .contact-section a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+      
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nature's Basket</h1>
+    </header>
+    <nav>
+        <a href="#highlights">Our Highlights</a>
+        <a href="#news">News & Events</a>
+        <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Login/Signup</a>
+            <div class="dropdown-content">
+                <a href="loginpage.html" rel="noopener noreferrer">Farmer Signup</a>
+                <a href="buyerlogin.html" rel="noopener noreferrer">Buyer Login</a>
+                <a href="adminloginpage.html" rel="noopener noreferrer">Admin Login</a>
+            </div>
+        </div>
+    </nav>
+    <div class="hero">
+        <h2>Welcome to Nature's Basket</h2>
+        <p>Fresh, Organic, and Sustainable Farming for a Better Tomorrow.</p>
+    </div>
+    <section id="highlights" class="section">
+        <h3>Our Highlights</h3>
+        <div class="highlights">
+            <div class="highlight">
+                <img src="globalimpact.jpg" alt="Global Impact" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+                <h4>Global Impact</h4>
+                <p>Empowering farmers worldwide with innovative solutions tailored to local needs. From Asia to Africa, we have introduced programs that increase crop yields and reduce waste.</p>
+            </div>
+            <div class="highlight">
+                <img src="latestresearch.jpg" alt="Global Impact" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+                <h4>Latest Research</h4>
+                <p>Our research team recently developed a smart irrigation system that reduces water usage by 40%. We are testing a new organic pesticide that increases crop health.</p>
+            </div>
+            <div class="highlight">
+                <img src="sustainability.jpg" alt="Global Impact" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+                <h4>Sustainability</h4>
+                <p>We are committed to advancing sustainable farming practices for future generations. By promoting crop rotation and organic fertilizers, we aim to rejuvenate soil health.</p>
+            </div>
+        </div>
+    </section>
+    <section id="news" class="section">
+        <h3>News & Events</h3>
+        <div class="news-item">
+            <h4>Nature's Basket Launches Smart Farming App</h4>
+            <p>We are excited to announce the launch of our new app, "FarmSmart," designed to help farmers track crop growth and weather conditions in real time.</p>
+            <p>Date: January 15, 2024</p>
+        </div>
+        <div class="news-item">
+            <h4>Upcoming Webinar: Sustainable Agriculture Techniques</h4>
+            <p>Join us for a free webinar where our experts will discuss the latest trends in sustainable farming. Reserve your spot now!</p>
+            <p>Date: February 10, 2024 | Time: 3:00 PM - 5:00 PM</p>
+        </div>
+        <div class="news-item">
+            <h4>New Partnership with GreenEarth Initiative</h4>
+            <p>We’ve partnered with GreenEarth Initiative to expand sustainable farming practices to underdeveloped regions.</p>
+            <p>Stay tuned for updates on this exciting collaboration.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:info@naturesbasket.com">info@naturesbasket.com</a></p>
+        <p>Follow us on:</p>
+        <p>
+            <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a> | 
+            <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a> | 
+            <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Nature's Basket. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

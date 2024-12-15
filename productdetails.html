@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; }
+        header { background-color: rgba(255, 255, 255, 0.8); padding: 10px 20px; text-align: center; }
+        .product-detail { display: flex; justify-content: space-around; padding: 20px; }
+        .product-detail img { max-width: 500px; max-height: 400px; border-radius: 10px; }
+        .product-info { max-width: 500px; padding: 20px; }
+        .product-actions { margin-top: 20px; text-align: center; }
+        .product-actions button { padding: 10px 20px; margin: 10px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header><h1>Product Details</h1></header>
+    <main>
+        <div class="product-detail">
+            <div class="product-info" id="product-info">
+                <!-- Product info will be loaded here -->
+            </div>
+            <div>
+                <img id="product-image" src="" alt="Product Image">
+            </div>
+        </div>
+
+        <div class="product-actions">
+            <button onclick="buyNow()">Buy Now</button>
+        </div>
+    </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        const products = [
+            { id: 1, name: "Apples", price: "$2.00", description: "Fresh organic apples!", image: "apple.jfif" },
+            { id: 2, name: "Carrots", price: "$1.50", description: "Fresh carrots for your kitchen!", image: "carrot.JFIF" },
+            { id: 3, name: "Milk", price: "$3.00", description: "Organic cow milk.", image: "milk.JFIF" },
+            { id: 4, name: "Eggs", price: "$2.50", description: "Farm fresh eggs.", image: "egg.JFIF" }
+        ];
+
+        const product = products.find(p => p.id == productId);
+        if (product) {
+            document.getElementById("product-info").innerHTML = `
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <p><strong>Price: ${product.price}</strong></p>
+            `;
+            document.getElementById("product-image").src = product.image;
+        }
+
+        function buyNow() {
+            localStorage.setItem("selectedProduct", JSON.stringify(product));
+            window.location.href = "buy-now.html";
+        }
+    </script>
+</body>
+</html>
